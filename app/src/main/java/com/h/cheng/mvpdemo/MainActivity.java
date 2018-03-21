@@ -47,13 +47,13 @@ public class MainActivity extends BaseActivity<FilePresenter> implements View.On
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
-    private void initView() {
+
+
+    public void initView() {
         btn_down = findViewById(R.id.btn_down);
         btn_down.setOnClickListener(this);
     }

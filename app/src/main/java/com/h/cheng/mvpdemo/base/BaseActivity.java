@@ -2,12 +2,8 @@ package com.h.cheng.mvpdemo.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
@@ -18,12 +14,25 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     protected abstract P createPresenter();
 
+    protected abstract int getLayoutId();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+        setContentView(getLayoutId());
         presenter = createPresenter();
+        initView();
+        initData();
     }
+
+    public void initData() {
+    }
+
+    public void initView() {
+    }
+
+
 
 
     @Override
@@ -39,7 +48,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      */
     public void showtoast(String s) {
         if (toast == null) {
-            toast = Toast.makeText(context, s, Toast.LENGTH_LONG);
+            toast = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG);
         }
         toast.show();
     }
