@@ -7,17 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.h.cheng.mvpdemo.R;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     public Context context;
     private ProgressDialog dialog;
-    private View view;
-    private ImageView iv_loading;
     public Toast toast;
     protected P presenter;
 
@@ -30,16 +25,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         presenter = createPresenter();
     }
 
-
-    /**
-     * 打开Activity
-     *
-     * @param cls
-     */
-    public void startA(Class<?> cls) {
-        Intent intent = new Intent(context, cls);
-        startActivity(intent);
-    }
 
     @Override
     protected void onDestroy() {
@@ -75,26 +60,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         }
     }
 
-
-    /**
-     * 通过资源res获得view
-     *
-     * @param res
-     * @return
-     */
-    public View getViewByRes(int res) {
-        return LayoutInflater.from(context).inflate(res, null);
-    }
-
-    /**
-     * 获得TextView 的文本
-     *
-     * @param tv
-     * @return
-     */
-    public String getTV(TextView tv) {
-        return tv == null ? "" : tv.getText().toString().trim();
-    }
 
     private void closeLoadingDialog() {
         if (dialog != null && dialog.isShowing()) {

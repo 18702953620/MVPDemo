@@ -9,13 +9,7 @@ import com.h.cheng.mvpdemo.utils.FileUtil;
 import java.io.File;
 import java.io.IOException;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Interceptor;
@@ -25,7 +19,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -58,7 +51,7 @@ public class FilePresenter extends BasePresenter<DownFileView> {
             }
 
             @Override
-            public void onErrorMsg(String msg) {
+            public void onError(String msg) {
 
             }
         });
@@ -105,7 +98,7 @@ public class FilePresenter extends BasePresenter<DownFileView> {
                     }
 
                     @Override
-                    public void onErrorMsg(String msg) {
+                    public void onError(String msg) {
                         baseView.onError(msg);
                     }
                 });

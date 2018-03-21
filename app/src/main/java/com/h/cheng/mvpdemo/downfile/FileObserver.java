@@ -2,11 +2,8 @@ package com.h.cheng.mvpdemo.downfile;
 
 import com.h.cheng.mvpdemo.base.BaseObserver;
 import com.h.cheng.mvpdemo.base.BaseView;
-import com.h.cheng.mvpdemo.utils.FileUtil;
 
 import java.io.File;
-
-import okhttp3.ResponseBody;
 
 /**
  * 作者： ch
@@ -43,7 +40,7 @@ public abstract class FileObserver extends BaseObserver<String> {
         if (file != null && file.exists()) {
             onSuccess(file);
         } else {
-            onErrorMsg("file is null or a file does not exist");
+            onError("file is null or a file does not exist");
         }
     }
 
@@ -55,6 +52,6 @@ public abstract class FileObserver extends BaseObserver<String> {
 
     public abstract void onSuccess(File file);
 
-    public abstract void onErrorMsg(String msg);
+    public abstract void onError(String msg);
 
 }

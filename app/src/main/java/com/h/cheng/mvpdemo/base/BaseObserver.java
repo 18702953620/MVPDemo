@@ -63,7 +63,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            onErrorMsg(e.toString());
+            onError(e.toString());
         }
 
 
@@ -91,9 +91,9 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
             onException(PARSE_ERROR);
         } else {
             if (e != null) {
-                onErrorMsg(e.toString());
+                onError(e.toString());
             } else {
-                onErrorMsg("未知错误");
+                onError("未知错误");
             }
         }
 
@@ -102,19 +102,19 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     private void onException(int unknownError) {
         switch (unknownError) {
             case CONNECT_ERROR:
-                onErrorMsg("连接错误");
+                onError("连接错误");
                 break;
 
             case CONNECT_TIMEOUT:
-                onErrorMsg("连接超时");
+                onError("连接超时");
                 break;
 
             case BAD_NETWORK:
-                onErrorMsg("网络问题");
+                onError("网络问题");
                 break;
 
             case PARSE_ERROR:
-                onErrorMsg("解析数据失败");
+                onError("解析数据失败");
                 break;
 
             default:
@@ -134,7 +134,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     public abstract void onSuccess(T o);
 
-    public abstract void onErrorMsg(String msg);
+    public abstract void onError(String msg);
 
 
 }

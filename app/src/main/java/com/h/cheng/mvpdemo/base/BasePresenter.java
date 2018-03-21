@@ -20,21 +20,14 @@ public class BasePresenter<V extends BaseView> {
 
     private CompositeDisposable compositeDisposable;
 
-    public BasePresenter(V baseView) {
-        attachView(baseView);
-    }
 
     public V baseView;
 
     protected ApiServer apiServer = ApiRetrofit.getInstance().getApiService();
 
-    /**
-     * 绑定 view
-     *
-     * @param view
-     */
-    public void attachView(V view) {
-        this.baseView = view;
+    public BasePresenter(V baseView) {
+
+        this.baseView = baseView;
     }
 
     /**
@@ -43,15 +36,6 @@ public class BasePresenter<V extends BaseView> {
     public void detachView() {
         baseView = null;
         removeDisposable();
-    }
-
-    /**
-     * 判断是否绑定
-     *
-     * @return
-     */
-    public boolean isAttachView() {
-        return baseView != null;
     }
 
     /**
@@ -78,24 +62,6 @@ public class BasePresenter<V extends BaseView> {
     public void removeDisposable() {
         if (compositeDisposable != null) {
             compositeDisposable.dispose();
-        }
-    }
-
-    /**
-     * 检查是否绑定
-     */
-    public void checkViewAttach() {
-        if (!isAttachView()) {
-            throw new MvpViewNotAttachedException();
-        }
-    }
-
-    /**
-     * 自定义异常
-     */
-    public static class MvpViewNotAttachedException extends RuntimeException {
-        public MvpViewNotAttachedException() {
-            super("请求数据前请先调用 attachView(View) 方法与View建立连接");
         }
     }
 
