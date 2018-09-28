@@ -1,6 +1,9 @@
 package com.h.cheng.mvpdemo.downfile;
 
 
+import android.os.Looper;
+import android.util.Log;
+
 import com.h.cheng.mvpdemo.api.ApiServer;
 import com.h.cheng.mvpdemo.base.BaseObserver;
 import com.h.cheng.mvpdemo.base.BasePresenter;
@@ -57,6 +60,7 @@ public class FilePresenter extends BasePresenter<DownFileView> {
         });
     }
 
+
     public void downFile(final String url, final String path) {
 
 
@@ -99,7 +103,7 @@ public class FilePresenter extends BasePresenter<DownFileView> {
 
                     @Override
                     public void onError(String msg) {
-                        baseView.onError(msg);
+                        baseView.showError(msg);
                     }
                 });
 

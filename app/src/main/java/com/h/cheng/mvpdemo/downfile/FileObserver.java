@@ -2,8 +2,11 @@ package com.h.cheng.mvpdemo.downfile;
 
 import com.h.cheng.mvpdemo.base.BaseObserver;
 import com.h.cheng.mvpdemo.base.BaseView;
+import com.h.cheng.mvpdemo.utils.FileUtil;
 
 import java.io.File;
+
+import okhttp3.ResponseBody;
 
 /**
  * 作者： ch
@@ -45,7 +48,7 @@ public abstract class FileObserver extends BaseObserver<String> {
     }
 
     @Override
-    public void onSuccess(String o) {
+    public void onSuccess(String body) {
 
     }
 

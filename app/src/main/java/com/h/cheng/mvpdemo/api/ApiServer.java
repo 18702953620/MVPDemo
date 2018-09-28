@@ -24,11 +24,18 @@ public interface ApiServer {
     @POST("shopping_login.htm")
     Observable<String> LoginByRx(@Field("username") String username, @Field("password") String password);
 
+    @POST("shopping_login.htm")
+    Observable<String> regex(@Field("tel") String tel);
+
+
     @Multipart
     @POST("user/register.do")
     Observable<String> register(@Part("phone") RequestBody phone, @Part("password") RequestBody password, @Part MultipartBody.Part image);
 
-//    @Streaming
+    @GET("http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList&type=1&size=10&offset=%25")
+    Observable<String> test();
+
+    @Streaming
     @GET
     /**
      * 大文件官方建议用 @Streaming 来进行注解，不然会出现IO异常，小文件可以忽略不注入

@@ -49,6 +49,15 @@
 
         </android.support.design.widget.TextInputLayout>
 
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="请输入关键字"
+            android:textSize="14sp" />
+
         <Button
             android:id="@+id/email_sign_in_button"
             style="?android:textAppearanceSmall"

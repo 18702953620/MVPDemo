@@ -1,6 +1,8 @@
-package com.h.cheng.mvpdemo.base;
+package com.h.cheng.mvpdemo.test;
 
 import com.google.gson.JsonParseException;
+import com.h.cheng.mvpdemo.base.BaseModel;
+import com.h.cheng.mvpdemo.base.BaseView;
 
 import org.json.JSONException;
 
@@ -19,9 +21,8 @@ import retrofit2.HttpException;
  * 来源：
  */
 
-public abstract class BaseObserver<T> extends DisposableObserver<T> {
-
-    protected BaseView view;
+public abstract class BOHelper<T> extends DisposableObserver<T> {
+    protected BVHelper view;
     /**
      * 解析数据失败
      */
@@ -39,21 +40,14 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
      */
     public static final int CONNECT_TIMEOUT = 1004;
 
-    private boolean isShowDialog;
 
-
-    public BaseObserver(BaseView view) {
+    public BOHelper(BVHelper view) {
         this.view = view;
-    }
-
-    public BaseObserver(BaseView view, boolean isShowDialog) {
-        this.view = view;
-        this.isShowDialog = isShowDialog;
     }
 
     @Override
     protected void onStart() {
-        if (view != null && isShowDialog) {
+        if (view != null) {
             view.showLoading();
         }
     }
@@ -79,24 +73,24 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onError(Throwable e) {
-        if (view != null && isShowDialog) {
+        if (view != null) {
             view.hideLoading();
         }
         if (e instanceof HttpException) {
             //   HTTP错误
-            onException(BAD_NETWORK, e);
+            onException(BAD_NETWORK);
         } else if (e instanceof ConnectException
                 || e instanceof UnknownHostException) {
             //   连接错误
-            onException(CONNECT_ERROR, e);
+            onException(CONNECT_ERROR);
         } else if (e instanceof InterruptedIOException) {
             //  连接超时
-            onException(CONNECT_TIMEOUT, e);
+            onException(CONNECT_TIMEOUT);
         } else if (e instanceof JsonParseException
                 || e instanceof JSONException
                 || e instanceof ParseException) {
             //  解析错误
-            onException(PARSE_ERROR, e);
+            onException(PARSE_ERROR);
         } else {
             if (e != null) {
                 onError(e.toString());
@@ -107,22 +101,22 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     }
 
-    private void onException(int unknownError, Throwable e) {
+    private void onException(int unknownError) {
         switch (unknownError) {
             case CONNECT_ERROR:
-                onError("连接错误," + e.getCause() + e.getMessage());
+                onError("连接错误");
                 break;
 
             case CONNECT_TIMEOUT:
-                onError("连接超时," + e.getCause() + e.getMessage());
+                onError("连接超时");
                 break;
 
             case BAD_NETWORK:
-                onError("网络问题," + e.getCause() + e.getMessage());
+                onError("网络问题");
                 break;
 
             case PARSE_ERROR:
-                onError("解析数据失败," + e.getCause() + e.getMessage());
+                onError("解析数据失败");
                 break;
 
             default:
@@ -133,7 +127,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onComplete() {
-        if (view != null && isShowDialog) {
+        if (view != null) {
             view.hideLoading();
         }
 

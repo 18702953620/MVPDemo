@@ -1,45 +1,56 @@
-package com.h.cheng.mvpdemo.base;
+package com.h.cheng.mvpdemo.test;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
+import com.h.cheng.mvpdemo.base.BaseModel;
+import com.h.cheng.mvpdemo.base.BasePresenter;
+import com.h.cheng.mvpdemo.base.BaseView;
+
+import butterknife.ButterKnife;
+
+public abstract class AC_Base<V extends BVHelper> extends AppCompatActivity implements BaseView {
     public Context context;
     private ProgressDialog dialog;
     public Toast toast;
-    protected P presenter;
+    protected V v;
 
-    protected abstract P createPresenter();
+    protected abstract V createView();
 
-    protected abstract int getLayoutId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        setContentView(getLayoutId());
-        presenter = createPresenter();
-        initView();
-        initData();
+        v = createView();
+        setContentView(v.getView());
+
     }
 
-    public void initData() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (v != null) {
+            v.onResume();
+        }
     }
 
-    public void initView() {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (v != null) {
+            v.onPause();
+        }
     }
-
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (presenter != null) {
-            presenter.detachView();
+        if (v != null) {
+            v.onDestroy();
         }
     }
 

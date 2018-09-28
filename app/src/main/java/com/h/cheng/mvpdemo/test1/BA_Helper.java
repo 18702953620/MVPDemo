@@ -1,14 +1,15 @@
-package com.h.cheng.mvpdemo.base;
+package com.h.cheng.mvpdemo.test1;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
+import com.h.cheng.mvpdemo.base.BaseModel;
+import com.h.cheng.mvpdemo.base.BaseView;
+
+public abstract class BA_Helper<P extends BP_Helper> extends AppCompatActivity implements BaseView {
     public Context context;
     private ProgressDialog dialog;
     public Toast toast;

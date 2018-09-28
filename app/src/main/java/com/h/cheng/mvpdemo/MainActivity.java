@@ -3,20 +3,16 @@ package com.h.cheng.mvpdemo;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.h.cheng.mvpdemo.base.BaseActivity;
-import com.h.cheng.mvpdemo.base.BaseModel;
-import com.h.cheng.mvpdemo.base.BasePresenter;
-import com.h.cheng.mvpdemo.base.BaseView;
 import com.h.cheng.mvpdemo.downfile.DownFileView;
 import com.h.cheng.mvpdemo.downfile.FilePresenter;
+import com.h.cheng.mvpdemo.test.AC_Login;
 import com.h.cheng.mvpdemo.utils.FileUtil;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -26,14 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity<FilePresenter> implements View.OnClickListener, DownFileView {
 
@@ -52,7 +40,6 @@ public class MainActivity extends BaseActivity<FilePresenter> implements View.On
     }
 
 
-
     public void initView() {
         btn_down = findViewById(R.id.btn_down);
         btn_down.setOnClickListener(this);
@@ -62,21 +49,22 @@ public class MainActivity extends BaseActivity<FilePresenter> implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_down:
+                startActivity(new Intent(context, AC_Login.class));
 
-                if (AndPermission.hasPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )) {
-                    // 有权限，直接do anything.
-//                    copyFile();
-
-                    downloadFile();
-                } else {
-                    // 申请权限。
-                    AndPermission.with(MainActivity.this)
-                            .requestCode(101)
-                            .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            .send();
-                }
+//                if (AndPermission.hasPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+//            )) {
+//                // 有权限，直接do anything.
+////                    copyFile();
+//
+//                downloadFile();
+//            } else {
+//                // 申请权限。
+//                AndPermission.with(MainActivity.this)
+//                        .requestCode(101)
+//                        .permission(Manifest.permission.READ_EXTERNAL_STORAGE,
+//                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                        .send();
+//            }
 
 
                 break;
@@ -158,6 +146,8 @@ public class MainActivity extends BaseActivity<FilePresenter> implements View.On
                 dirFile.mkdirs();
             }
         }
+//        presenter.downFile1(url, dir + "app-debug.apk");
+//        presenter.downFile2(url, dir + "app-debug.apk");
         presenter.downFile(url, dir + "app-debug.apk");
     }
 

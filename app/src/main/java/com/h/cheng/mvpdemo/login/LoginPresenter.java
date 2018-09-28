@@ -32,4 +32,23 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             }
         });
     }
+
+    public void regex(String tel) {
+
+        addDisposable(apiServer.regex(tel), new BaseObserver(baseView) {
+            @Override
+            public void onSuccess(Object o) {
+                baseView.onLoginSucc();
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                baseView.showError(msg);
+
+            }
+        });
+    }
+
+
 }
