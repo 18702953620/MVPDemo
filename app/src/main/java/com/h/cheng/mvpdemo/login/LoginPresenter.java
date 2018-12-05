@@ -3,6 +3,13 @@ package com.h.cheng.mvpdemo.login;
 import com.h.cheng.mvpdemo.base.BaseObserver;
 import com.h.cheng.mvpdemo.base.BasePresenter;
 
+import java.io.File;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 /**
  * 作者： ch
  * 时间： 2018/3/21 0021-下午 4:13
@@ -36,6 +43,27 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     public void regex(String tel) {
 
         addDisposable(apiServer.regex(tel), new BaseObserver(baseView) {
+            @Override
+            public void onSuccess(Object o) {
+                baseView.onLoginSucc();
+
+            }
+
+            @Override
+            public void onError(String msg) {
+                baseView.showError(msg);
+
+            }
+        });
+    }
+
+    public void upload(String path) {
+
+        File file = new File(path);
+        //  图片参数
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("uploadFile", file.getName(), requestFile);
+        addDisposable(apiServer.upload(body), new BaseObserver(baseView) {
             @Override
             public void onSuccess(Object o) {
                 baseView.onLoginSucc();

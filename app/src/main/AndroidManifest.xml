@@ -39,6 +39,8 @@
         <activity
             android:name=".test.AC_Login"
             android:label="@string/title_activity_login" />
+        <activity android:name=".DownActivity" />
+        <activity android:name=".APKActivity"></activity>
     </application>
 
 </manifest>

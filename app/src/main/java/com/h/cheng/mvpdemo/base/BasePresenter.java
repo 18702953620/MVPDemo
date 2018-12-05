@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class BasePresenter<V extends BaseView> {
 
-    private CompositeDisposable compositeDisposable;
+    public CompositeDisposable compositeDisposable;
 
 
     public V baseView;
@@ -64,5 +64,7 @@ public class BasePresenter<V extends BaseView> {
             compositeDisposable.dispose();
         }
     }
+
+
 
 }

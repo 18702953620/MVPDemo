@@ -8,11 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     public Context context;
     private ProgressDialog dialog;
     public Toast toast;
     protected P presenter;
+    protected Unbinder unbinder;
 
     protected abstract P createPresenter();
 
@@ -24,6 +28,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         context = this;
         setContentView(getLayoutId());
         presenter = createPresenter();
+        unbinder = ButterKnife.bind(this);
         initView();
         initData();
     }
@@ -40,6 +45,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onDestroy();
         if (presenter != null) {
             presenter.detachView();
+        }
+        if (unbinder != null) {
+            unbinder.unbind();
         }
     }
 

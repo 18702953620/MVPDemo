@@ -1,6 +1,7 @@
 package com.h.cheng.mvpdemo.downfile;
 
 
+import android.annotation.SuppressLint;
 import android.os.Looper;
 import android.util.Log;
 
@@ -12,6 +13,7 @@ import com.h.cheng.mvpdemo.utils.FileUtil;
 import java.io.File;
 import java.io.IOException;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -19,6 +21,7 @@ import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -34,6 +37,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 
 public class FilePresenter extends BasePresenter<DownFileView> {
+
+
+    private FileObserver observer;
+
     public FilePresenter(DownFileView baseView) {
         super(baseView);
     }

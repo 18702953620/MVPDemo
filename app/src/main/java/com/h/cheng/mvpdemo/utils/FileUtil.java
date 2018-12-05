@@ -8,10 +8,12 @@ import android.os.Environment;
 import android.support.v4.content.FileProvider;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.RandomAccessFile;
 
 import okhttp3.ResponseBody;
 
@@ -78,6 +80,59 @@ public class FileUtil {
         }
 
         return file;
+    }
+
+    /**
+     * @param filePath
+     * @param start    起始位置
+     * @param body
+     */
+    public static File saveFile(String filePath, long start, ResponseBody body) {
+        InputStream inputStream = null;
+        RandomAccessFile raf = null;
+        File file = null;
+        try {
+            file = new File(filePath);
+
+            raf = new RandomAccessFile(filePath, "rw");
+            inputStream = body.byteStream();
+            byte[] fileReader = new byte[4096];
+
+            raf.seek(start);
+
+            while (true) {
+                int read = inputStream.read(fileReader);
+                if (read == -1) {
+                    break;
+                }
+                raf.write(fileReader, 0, read);
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (raf != null) {
+                try {
+                    raf.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return file;
+
     }
 
     /**
