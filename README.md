@@ -11,3 +11,4 @@ mvp 框架
 * #### [【Android架构】基于MVP模式的Retrofit2+RXjava封装之文件下载（二）](https://www.jianshu.com/p/f5d82c2b5431)
 * #### [【Android架构】基于MVP模式的Retrofit2+RXjava封装之文件上传（三）](https://www.jianshu.com/p/6ccdec4f3dd2)
 * #### [【Android架构】基于MVP模式的Retrofit2+RXjava封装之常见问题（四）](https://www.jianshu.com/p/f59d8aeaf3c0)
+* #### [【Android架构】基于MVP模式的Retrofit2+RXjava封装之断点下载（五）](https://www.jianshu.com/p/36a689abc20c)
