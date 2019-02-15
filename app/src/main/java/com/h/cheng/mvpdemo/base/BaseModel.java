@@ -3,6 +3,15 @@ package com.h.cheng.mvpdemo.base;
 import java.io.Serializable;
 
 public class BaseModel<T> implements Serializable {
+
+    public BaseModel() {
+    }
+
+    public BaseModel(int errcode, String errmsg) {
+        this.errcode = errcode;
+        this.errmsg = errmsg;
+    }
+
     private int errcode;
     private String errmsg;
     private T result;

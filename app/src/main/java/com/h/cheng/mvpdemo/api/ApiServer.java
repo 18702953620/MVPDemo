@@ -1,5 +1,9 @@
 package com.h.cheng.mvpdemo.api;
 
+import com.h.cheng.mvpdemo.test3.ShareModel;
+import com.h.cheng.mvpdemo.test3.WatchRecordModel;
+
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -54,5 +58,25 @@ public interface ApiServer {
 
     @GET("http://api.csslcloud.net/api/room/create{param}")
     Observable<String> createRoom(@Path("param") String param);
+
+    /**
+     * 获取分享列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("module/index.php?")
+    Observable<List<ShareModel>> getShareList(@FieldMap Map<String, String> map);
+
+
+    /**
+     * 观看历史
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("module/index.php?ctl=user&act=watchHistory")
+    Observable<List<WatchRecordModel>> watchHistory(@FieldMap Map<String, Object> params);
+
 
 }

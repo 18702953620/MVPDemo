@@ -55,10 +55,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      * @param s
      */
     public void showtoast(String s) {
-        if (toast == null) {
-            toast = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG);
-        }
-        toast.show();
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
 
 

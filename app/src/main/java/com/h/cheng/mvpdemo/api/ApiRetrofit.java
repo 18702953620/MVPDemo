@@ -2,6 +2,8 @@ package com.h.cheng.mvpdemo.api;
 
 import android.util.Log;
 
+import com.h.cheng.mvpdemo.base.gson.BaseConverterFactory;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -24,7 +26,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 public class ApiRetrofit {
 
-    public final String BASE_SERVER_URL = "https://wawa-api.vchangyi.com/";
+    public final String BASE_SERVER_URL = "http://47.96.30.3/";
 
     private static ApiRetrofit apiRetrofit;
     private Retrofit retrofit;
@@ -68,8 +70,7 @@ public class ApiRetrofit {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(BaseConverterFactory.create())
                 //支持RxJava2
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
