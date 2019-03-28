@@ -25,7 +25,7 @@ public final class BaseConverterFactory extends Converter.Factory {
         return create(new Gson());
     }
 
-    @SuppressWarnings("ConstantConditions") // Guarding public API nullability.
+    @SuppressWarnings("ConstantConditions")
     public static BaseConverterFactory create(Gson gson) {
         if (gson == null) throw new NullPointerException("gson == null");
         return new BaseConverterFactory(gson);

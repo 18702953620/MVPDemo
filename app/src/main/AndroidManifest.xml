@@ -14,15 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".test3.ShareActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- 建议使用包名加fileprovider，同一手机不能安装一样的authorities应用 -->
+        </activity> <!-- 建议使用包名加fileprovider，同一手机不能安装一样的authorities应用 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.h.cheng.mvpdemo.fileprovider"
@@ -40,7 +39,7 @@
             android:name=".test.AC_Login"
             android:label="@string/title_activity_login" />
         <activity android:name=".DownActivity" />
-        <activity android:name=".APKActivity"></activity>
+        <activity android:name=".APKActivity" />
     </application>
 
 </manifest>

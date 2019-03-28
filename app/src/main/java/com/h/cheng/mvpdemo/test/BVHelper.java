@@ -63,12 +63,12 @@ public abstract class BVHelper<P extends BPHelper> {
         unbinder = ButterKnife.bind(this, view);
     }
 
-    public void showToast(String str) {
+    private void showToast(String str) {
         Toast.makeText(activity, str, Toast.LENGTH_SHORT).show();
     }
 
 
-    public void onDestroy() {
+    void onDestroy() {
         if (unbinder != null) {
             unbinder.unbind();
         }

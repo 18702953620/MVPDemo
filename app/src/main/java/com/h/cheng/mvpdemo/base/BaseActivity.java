@@ -14,7 +14,6 @@ import butterknife.Unbinder;
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     public Context context;
     private ProgressDialog dialog;
-    public Toast toast;
     protected P presenter;
     protected Unbinder unbinder;
 
@@ -55,7 +54,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      * @param s
      */
     public void showtoast(String s) {
-        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, s, Toast.LENGTH_LONG).show();
     }
 
 

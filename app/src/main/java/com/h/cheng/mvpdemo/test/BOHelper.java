@@ -21,7 +21,7 @@ import retrofit2.HttpException;
  * 来源：
  */
 
-public abstract class BOHelper<T> extends DisposableObserver<T> {
+public abstract class BOHelper<M> extends DisposableObserver<M> {
     protected BVHelper view;
     /**
      * 解析数据失败
@@ -53,7 +53,7 @@ public abstract class BOHelper<T> extends DisposableObserver<T> {
     }
 
     @Override
-    public void onNext(T o) {
+    public void onNext(M o) {
         try {
             BaseModel model = (BaseModel) o;
             if (model.getErrcode() == 0) {
@@ -134,7 +134,7 @@ public abstract class BOHelper<T> extends DisposableObserver<T> {
     }
 
 
-    public abstract void onSuccess(T o);
+    public abstract void onSuccess(M o);
 
     public abstract void onError(String msg);
 

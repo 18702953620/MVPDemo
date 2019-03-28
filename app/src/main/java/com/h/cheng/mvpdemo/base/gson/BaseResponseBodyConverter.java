@@ -39,17 +39,15 @@ public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> 
         String jsonString = value.string();
         try {
             JSONObject object = new JSONObject(jsonString);
-
-            int code = object.getInt("status");
-            if (code != 1) {
+            int status = object.getInt("status");
+            if (status != 1) {
                 String msg = object.getString("msg");
                 if (TextUtils.isEmpty(msg)) {
                     msg = object.getString("error");
                 }
                 //异常处理
-                throw new BaseException(msg, code);
+                throw new BaseException(msg, status);
             }
-
             return adapter.fromJson(object.getString("data"));
 
         } catch (JSONException e) {

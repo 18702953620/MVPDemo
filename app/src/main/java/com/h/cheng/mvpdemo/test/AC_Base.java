@@ -58,10 +58,7 @@ public abstract class AC_Base<V extends BVHelper> extends AppCompatActivity impl
      * @param s
      */
     public void showtoast(String s) {
-        if (toast == null) {
-            toast = Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG);
-        }
-        toast.show();
+        Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }
 
 

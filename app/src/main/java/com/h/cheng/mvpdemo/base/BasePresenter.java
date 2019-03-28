@@ -26,7 +26,6 @@ public class BasePresenter<V extends BaseView> {
     protected ApiServer apiServer = ApiRetrofit.getInstance().getApiService();
 
     public BasePresenter(V baseView) {
-
         this.baseView = baseView;
     }
 

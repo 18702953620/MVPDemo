@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import com.h.cheng.mvpdemo.base.BaseActivity;
 import com.h.cheng.mvpdemo.downfile.FilePresenter;
+import com.h.cheng.mvpdemo.login.LoginActivity;
+import com.h.cheng.mvpdemo.test3.ShareActivity;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -35,8 +37,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_down:
                 //MVP
 //                startActivity(new Intent(context, LoginActivity.class));
+                startActivity(new Intent(context, ShareActivity.class));
                 //下载
-                startActivity(new Intent(context, DownActivity.class));
+//                startActivity(new Intent(context, DownActivity.class));
                 //apk安装
 //                startActivity(new Intent(context, APKActivity.class));
                 break;
