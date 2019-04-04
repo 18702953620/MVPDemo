@@ -24,6 +24,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * apk 安装
+ */
 public class APKActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_down)

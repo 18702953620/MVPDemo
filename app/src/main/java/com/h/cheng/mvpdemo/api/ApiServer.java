@@ -1,7 +1,7 @@
 package com.h.cheng.mvpdemo.api;
 
-import com.h.cheng.mvpdemo.test3.ShareModel;
-import com.h.cheng.mvpdemo.test3.WatchRecordModel;
+import com.h.cheng.mvpdemo.test_json.ShareModel;
+import com.h.cheng.mvpdemo.test_json.WatchRecordModel;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -67,6 +68,26 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("module/index.php?")
     Observable<List<ShareModel>> getShareList(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取分享列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("module/index.php?")
+    @Headers({"url_mark:1"})
+    Observable<List<ShareModel>> getShareList2(@FieldMap Map<String, String> map);
+
+    /**
+     * 获取分享列表
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("module/index.php?")
+    @Headers({"url_mark:2"})
+    Observable<List<ShareModel>> getShareList3(@FieldMap Map<String, String> map);
 
 
     /**

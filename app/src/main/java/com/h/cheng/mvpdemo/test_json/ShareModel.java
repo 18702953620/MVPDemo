@@ -1,4 +1,4 @@
-package com.h.cheng.mvpdemo.test3;
+package com.h.cheng.mvpdemo.test_json;
 
 import java.io.Serializable;
 import java.util.List;

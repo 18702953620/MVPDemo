@@ -1,4 +1,4 @@
-package com.h.cheng.mvpdemo.base;
+package com.h.cheng.mvpdemo.model;
 
 import java.util.List;
 
