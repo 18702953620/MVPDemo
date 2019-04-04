@@ -19,6 +19,7 @@ mvp 框架
 * [【Android架构】基于MVP模式的Retrofit2+RXjava封装之常见问题（四）](https://www.jianshu.com/p/f59d8aeaf3c0)
 * [【Android架构】基于MVP模式的Retrofit2+RXjava封装之断点下载（五）](https://www.jianshu.com/p/36a689abc20c)
 * [【Android架构】基于MVP模式的Retrofit2+RXjava封装之数据预处理（六）](https://www.jianshu.com/p/bc7dc3b67c5d)
+* [【Android架构】基于MVP模式的Retrofit2+RXjava封装之多Url（七）](https://www.jianshu.com/p/da8a01d4548a)
 
 # 常见问题
 * 1.为啥后台返回的json都拿到了，还走的`onError` ？
