@@ -34,8 +34,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             @Override
             public void onClick(View view) {
                 //示例代码，示例接口
-                presenter.login(mEmailView.getText().toString(), mPasswordView.getText().toString());
-//                presenter.upload("/storage/emulated/0/DCIM/Camera/IMG_20180710_152800_BURST19.jpg");
+//                presenter.login(mEmailView.getText().toString(), mPasswordView.getText().toString());
+                presenter.upload("/storage/emulated/0/DCIM/Camera/1547775857372.jpg");
 
             }
         });

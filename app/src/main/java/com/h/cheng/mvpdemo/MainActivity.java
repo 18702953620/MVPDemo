@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.h.cheng.mvpdemo.base.BaseActivity;
 import com.h.cheng.mvpdemo.downfile.FilePresenter;
+import com.h.cheng.mvpdemo.livedata.LiveDemoActivity;
 import com.h.cheng.mvpdemo.login.LoginActivity;
 import com.h.cheng.mvpdemo.test_json.ShareActivity;
 import com.h.cheng.mvpdemo.test_multiple.MultipleActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btn_down, R.id.btn_apk, R.id.btn_login, R.id.btn_share, R.id.btn_url})
+    @OnClick({R.id.btn_down, R.id.btn_apk, R.id.btn_login, R.id.btn_share, R.id.btn_url, R.id.btn_live})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             //下载 断点下载
@@ -61,6 +62,10 @@ public class MainActivity extends BaseActivity {
             //多url
             case R.id.btn_url:
                 startActivity(new Intent(context, MultipleActivity.class));
+                break;
+            //live data
+            case R.id.btn_live:
+                startActivity(new Intent(context, LiveDemoActivity.class));
                 break;
         }
     }

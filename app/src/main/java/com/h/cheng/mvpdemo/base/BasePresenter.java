@@ -4,10 +4,16 @@ package com.h.cheng.mvpdemo.base;
 import com.h.cheng.mvpdemo.api.ApiRetrofit;
 import com.h.cheng.mvpdemo.api.ApiServer;
 
+import org.reactivestreams.Subscription;
+
+import io.reactivex.CompletableOnSubscribe;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableSubscriber;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
  * 作者： ch
@@ -37,25 +43,12 @@ public class BasePresenter<V extends BaseView> {
         removeDisposable();
     }
 
-    /**
-     * 返回 view
-     *
-     * @return
-     */
-    public V getBaseView() {
-        return baseView;
-    }
-
-
-    public void addDisposable(Observable<?> observable, BaseObserver observer) {
+    public void addDisposable(Flowable<?> flowable, BaseObserver observer) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }
-        compositeDisposable.add(observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(observer));
-
-
+        compositeDisposable.add(flowable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(observer));
     }
 
     public void removeDisposable() {
@@ -63,7 +56,4 @@ public class BasePresenter<V extends BaseView> {
             compositeDisposable.dispose();
         }
     }
-
-
-
 }

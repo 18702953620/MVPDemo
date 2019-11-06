@@ -6,6 +6,7 @@ import com.h.cheng.mvpdemo.test_json.WatchRecordModel;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -32,33 +33,33 @@ import retrofit2.http.Url;
 public interface ApiServer {
 
     @POST("shopping_login.htm")
-    Observable<String> LoginByRx(@Field("username") String username, @Field("password") String password);
+    Flowable<String> LoginByRx(@Field("username") String username, @Field("password") String password);
 
     @POST("shopping_login.htm")
-    Observable<String> regex(@Field("tel") String tel);
+    Flowable<String> regex(@Field("tel") String tel);
 
 
     @Multipart
     @POST("user/register.do")
-    Observable<String> register(@Part("phone") RequestBody phone, @Part("password") RequestBody password, @Part MultipartBody.Part image);
+    Flowable<String> register(@Part("phone") RequestBody phone, @Part("password") RequestBody password, @Part MultipartBody.Part image);
 
     @Multipart
-    @POST("http://192.168.10.221:8080/SpringMvc/file/uploadspring")
-    Observable<String> upload(@Part MultipartBody.Part image);
+    @POST("http://sfybim.com/upload/uploadfile")
+    Flowable<String> upload(@Part MultipartBody.Part image);
 
     @GET("http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.billboard.billList&type=1&size=10&offset=%25")
-    Observable<String> test();
+    Flowable<String> test();
 
     @Streaming
     @GET
     /**
      * 大文件官方建议用 @Streaming 来进行注解，不然会出现IO异常，小文件可以忽略不注入
      */
-    Observable<ResponseBody> downloadFile(@Url String fileUrl);
+    Flowable<ResponseBody> downloadFile(@Url String fileUrl);
 
 
     @GET("http://api.csslcloud.net/api/room/create{param}")
-    Observable<String> createRoom(@Path("param") String param);
+    Flowable<String> createRoom(@Path("param") String param);
 
     /**
      * 获取分享列表
@@ -67,7 +68,7 @@ public interface ApiServer {
      */
     @FormUrlEncoded
     @POST("module/index.php?")
-    Observable<List<ShareModel>> getShareList(@FieldMap Map<String, String> map);
+    Flowable<List<ShareModel>> getShareList(@FieldMap Map<String, String> map);
 
     /**
      * 获取分享列表
@@ -77,7 +78,7 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("module/index.php?")
     @Headers({"url_mark:1"})
-    Observable<List<ShareModel>> getShareList2(@FieldMap Map<String, String> map);
+    Flowable<List<ShareModel>> getShareList2(@FieldMap Map<String, String> map);
 
     /**
      * 获取分享列表
@@ -87,7 +88,7 @@ public interface ApiServer {
     @FormUrlEncoded
     @POST("module/index.php?")
     @Headers({"url_mark:2"})
-    Observable<List<ShareModel>> getShareList3(@FieldMap Map<String, String> map);
+    Flowable<List<ShareModel>> getShareList3(@FieldMap Map<String, String> map);
 
 
     /**
@@ -97,7 +98,7 @@ public interface ApiServer {
      */
     @FormUrlEncoded
     @POST("module/index.php?ctl=user&act=watchHistory")
-    Observable<List<WatchRecordModel>> watchHistory(@FieldMap Map<String, Object> params);
+    Flowable<List<WatchRecordModel>> watchHistory(@FieldMap Map<String, Object> params);
 
 
 }

@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.subscribers.DisposableSubscriber;
 import retrofit2.HttpException;
 
 /**
@@ -19,7 +20,7 @@ import retrofit2.HttpException;
  * 来源：
  */
 
-public abstract class BaseObserver<T> extends DisposableObserver<T> {
+public abstract class BaseObserver<T> extends DisposableSubscriber<T> {
 
     protected BaseView view;
 

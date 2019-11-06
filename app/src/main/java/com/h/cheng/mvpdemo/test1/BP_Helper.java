@@ -4,6 +4,7 @@ import com.h.cheng.mvpdemo.api.ApiRetrofit;
 import com.h.cheng.mvpdemo.api.ApiServer;
 import com.h.cheng.mvpdemo.test.BOHelper;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -37,7 +38,7 @@ public class BP_Helper<V extends BV_Helper> {
     }
 
 
-    public void addDisposable(Observable<?> observable, BOHelper observer) {
+    public void addDisposable(Flowable<?> observable, BOHelper observer) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }

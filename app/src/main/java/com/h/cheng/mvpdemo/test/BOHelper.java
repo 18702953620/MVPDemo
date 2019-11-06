@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 
 import io.reactivex.observers.DisposableObserver;
+import io.reactivex.subscribers.DisposableSubscriber;
 import retrofit2.HttpException;
 
 /**
@@ -21,7 +22,7 @@ import retrofit2.HttpException;
  * 来源：
  */
 
-public abstract class BOHelper<M> extends DisposableObserver<M> {
+public abstract class BOHelper<M> extends DisposableSubscriber<M> {
     protected BVHelper view;
     /**
      * 解析数据失败

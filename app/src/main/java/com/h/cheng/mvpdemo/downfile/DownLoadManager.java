@@ -14,6 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Function;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subscribers.DisposableSubscriber;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -256,7 +257,7 @@ public class DownLoadManager {
     }
 
 
-    public abstract class FileObserver<T> extends DisposableObserver<T> {
+    public abstract class FileObserver<T> extends DisposableSubscriber<T> {
 
         @Override
         public void onNext(T t) {
