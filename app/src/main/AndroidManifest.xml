@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.h.cheng.mvpdemo">
+    package="com.h.cheng.mvp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -14,10 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".livedata.LiveDemoActivity"></activity>
-        <activity android:name=".test_multiple.MultipleActivity" />
-        <activity android:name=".test_json.ShareActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.h.cheng.mvp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +22,8 @@
             </intent-filter>
         </activity> <!-- 建议使用包名加fileprovider，同一手机不能安装一样的authorities应用 -->
         <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.h.cheng.mvpdemo.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.h.cheng.mvp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -34,14 +31,11 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity
-            android:name=".login.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity
-            android:name=".test.AC_Login"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".DownActivity" />
-        <activity android:name=".APKActivity" />
+        <activity android:name=".mvp.MVPActivity"></activity>
+        <activity android:name=".flowable.FlowActivity" />
+        <activity android:name=".upload.UploadActivity" />
+        <activity android:name=".down.DownActivity" />
+        <activity android:name=".livedata.LiveDataActivity" />
     </application>
 
 </manifest>
