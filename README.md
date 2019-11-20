@@ -4,15 +4,6 @@
 
 mvp 框架
 
-* 其中base 下为普通版mvp 
-
-* baseimpl 为进阶版，添加中间层，简化base层和业务层，避免业务层过多无用的实现
-* login 为mvp 演示代码
-* test 下为分离view版，分离了view 和activity，但在实际开发中，业务层无法避免要和activity 做各种交互，各种回调，暂不推荐使用。
-* test_json 为 处理json 预处理相关代码
-* test_multiple 为多 url 处理相关代码
-* downfile 为文件上传、下载相关代码
-
 * [【Android架构】基于MVP模式的Retrofit2+RXjava封装（一）](https://www.jianshu.com/p/bf1106b339c7)
 * [【Android架构】基于MVP模式的Retrofit2+RXjava封装之文件下载（二）](https://www.jianshu.com/p/f5d82c2b5431)
 * [【Android架构】基于MVP模式的Retrofit2+RXjava封装之文件上传（三）](https://www.jianshu.com/p/6ccdec4f3dd2)
