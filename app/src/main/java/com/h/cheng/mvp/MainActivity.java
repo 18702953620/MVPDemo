@@ -71,7 +71,6 @@ public class MainActivity extends BaseActivity {
             //上传
             case R.id.btn_upload:
                 startActivity(new Intent(context, UploadActivity.class));
-
                 break;
             case R.id.btn_data:
                 startActivity(new Intent(context, LiveDataActivity.class));

@@ -22,7 +22,7 @@ public class FlowPresenter extends BasePresenter<FlowView> {
      * 获取文章列表
      */
     public void getWxArticleList() {
-        addFlowable(apiServer.getFWxArticleList(), new BaseFlowSubscriber<List<ArticleModel>>(baseView) {
+        addDisposable(apiServer.getFWxArticleList(), new BaseSubscriber<List<ArticleModel>>(baseView) {
             @Override
             public void onSuccess(List<ArticleModel> o) {
                 baseView.onGetListSucc(o);

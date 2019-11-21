@@ -16,9 +16,12 @@ import com.h.cheng.mvp.model.BannerModel;
  * 来源：
  */
 public class BannerViewModel extends BaseViewModel<BaseModel<BannerModel>> {
-
-
-
+    /**
+     * 获取轮播图
+     *
+     * @param owner
+     * @return
+     */
     protected BannerViewModel loadBanner(LifecycleOwner owner) {
         apiServer.getBannerList().observe(owner, new Observer<BaseModel<BannerModel>>() {
             @Override
@@ -28,6 +31,4 @@ public class BannerViewModel extends BaseViewModel<BaseModel<BannerModel>> {
         });
         return this;
     }
-
-
 }

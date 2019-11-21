@@ -5,43 +5,43 @@ import com.h.cheng.mvp.api.BaseException;
 import com.h.cheng.mvp.base.BaseView;
 
 import org.json.JSONException;
-import org.reactivestreams.Subscription;
 
 import java.io.InterruptedIOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 
-import io.reactivex.FlowableSubscriber;
+import io.reactivex.subscribers.DisposableSubscriber;
 import retrofit2.HttpException;
 
 /**
  * 作者： ch
- * 时间： 2019/11/19 16:27
+ * 时间： 2019/11/21 14:05
  * 描述：
  * 来源：
  */
-public abstract class BaseFlowSubscriber<T> implements FlowableSubscriber<T> {
+public abstract class BaseSubscriber<T> extends DisposableSubscriber<T> {
+
 
     protected BaseView view;
 
     private boolean isShowDialog;
 
-    public BaseFlowSubscriber(BaseView view) {
+    public BaseSubscriber(BaseView view) {
         this.view = view;
     }
 
-    public BaseFlowSubscriber(BaseView view, boolean isShowDialog) {
+    public BaseSubscriber(BaseView view, boolean isShowDialog) {
         this.view = view;
         this.isShowDialog = isShowDialog;
     }
 
     @Override
-    public void onSubscribe(Subscription s) {
+    protected void onStart() {
+        super.onStart();
         if (view != null && isShowDialog) {
             view.showLoading();
         }
-        s.request(Long.MAX_VALUE);
     }
 
     @Override
@@ -101,7 +101,6 @@ public abstract class BaseFlowSubscriber<T> implements FlowableSubscriber<T> {
             view.hideLoading();
         }
     }
-
 
     public abstract void onSuccess(T o);
 

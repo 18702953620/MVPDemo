@@ -3,7 +3,7 @@ package com.h.cheng.mvp.base;
 
 import com.h.cheng.mvp.api.ApiRetrofit;
 import com.h.cheng.mvp.api.ApiServer;
-import com.h.cheng.mvp.flowable.BaseFlowSubscriber;
+import com.h.cheng.mvp.flowable.BaseSubscriber;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
@@ -48,10 +48,12 @@ public class BasePresenter<V extends BaseView> {
 
     }
 
-
-    public void addFlowable(Flowable<?> flowable, BaseFlowSubscriber subscriber) {
-        flowable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(subscriber);
+    public void addDisposable(Flowable<?> flowable, BaseSubscriber subscriber) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(flowable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(subscriber));
 
     }
 
