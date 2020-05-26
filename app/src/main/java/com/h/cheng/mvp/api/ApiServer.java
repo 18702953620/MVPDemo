@@ -44,7 +44,7 @@ public interface ApiServer {
      * @return
      */
     @GET("wxarticle/chapters/json")
-    Flowable<List<ArticleModel>> getFWxArticleList();
+    Flowable<ArticleModel> getFWxArticleList();
 
     /**
      * 文件上传

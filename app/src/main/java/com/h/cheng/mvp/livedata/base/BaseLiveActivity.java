@@ -1,44 +1,68 @@
 package com.h.cheng.mvp.livedata.base;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+
+import java.lang.reflect.ParameterizedType;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseLiveActivity<P extends BaseLivePresenter> extends AppCompatActivity {
+/**
+ * @author ch
+ * @date 2020/5/25-16:53
+ * @desc
+ */
+public abstract class BaseLiveActivity<M extends BaseViewModel> extends AppCompatActivity implements BaseViewHelper {
+
+
+    protected M vm;
+
+    /**
+     * context
+     */
     public Context context;
-    private ProgressDialog dialog;
+
+    /**
+     * 布局
+     *
+     * @return id
+     */
+    protected abstract int getLayoutId();
+
+    /**
+     * 初始化
+     */
+    protected abstract void initView();
+
+    /**
+     * 获取数据
+     */
+    protected abstract void getData();
+
     protected Unbinder unbinder;
 
     protected ViewModelProvider providers;
 
-    protected P presenter;
-
-    protected abstract P createPresenter();
-
-
-    protected abstract int getLayoutId();
-
-    protected abstract void initView();
-
-    protected abstract void initData();
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         providers = new ViewModelProvider(this,
                 new ViewModelProvider.AndroidViewModelFactory(getApplication()));
+
+        vm = createViewModel();
+
         initView();
-        initData();
+
+        getData();
     }
 
     @Override
@@ -49,45 +73,42 @@ public abstract class BaseLiveActivity<P extends BaseLivePresenter> extends AppC
         }
     }
 
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showError(String msg) {
+
+    }
+
+    @Override
+    public void onErrorCode(int code, String msg) {
+        showtoast(msg);
+    }
+
+
     /**
-     * @param s
+     * @param s s
      */
     public void showtoast(String s) {
         Toast.makeText(context, s, Toast.LENGTH_LONG).show();
     }
 
-
-    public void showFileDialog() {
-        dialog = new ProgressDialog(context);
-        dialog.setMessage("正在下载中,请稍后");
-        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setMax(100);
-        dialog.show();
+    /**
+     * Initialize view model. Override this method to add your own implementation.
+     *
+     * @return the view model will be used.
+     */
+    protected M createViewModel() {
+        Class<M> vmClass = ((Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0]);
+        return providers.get(vmClass);
     }
-
-    public void hideFileDialog() {
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
-
-
-    private void closeLoadingDialog() {
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
-    }
-
-
-    private void showLoadingDialog() {
-
-        if (dialog == null) {
-            dialog = new ProgressDialog(context);
-        }
-        dialog.setCancelable(false);
-        dialog.show();
-    }
-
-
 }
